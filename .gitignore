@@ -1,0 +1,9 @@
+.env
+.env.*
+!.env.example
+*.log
+*.bak
+*.backup
+*.dump
+*.sql.gz
+api/config.local.php

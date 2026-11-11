@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Jesaka Rice Company — Rice store management: inventory, QR point of sale, profit & loss">
+  <meta name="theme-color" content="#0b0e0c">
+  <title>Jesaka Rice Company — Store Management</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍚</text></svg>">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.js"></script>
+</head>
+<body>
+  <div id="toasts"></div>
+  <div id="print-area"></div>
+
+  <!-- Login -->
+  <div id="login-page" class="login-wrap" style="display:none;">
+    <div class="login-card">
+      <div class="login-head">
+        <div class="login-badge">🍚</div>
+        <h1 id="login-store-name">Jesaka Rice Company</h1>
+        <p>Sign in to your store account</p>
+      </div>
+      <div class="login-tabs" id="login-tabs" role="tablist">
+        <button type="button" class="login-tab on" data-portal="admin">👤 Administrator</button>
+        <button type="button" class="login-tab" data-portal="worker">🧑‍🌾 Worker</button>
+      </div>
+      <form id="login-form" novalidate>
+        <div class="form-group">
+          <label class="form-label">Username</label>
+          <input class="form-control" id="login-username" autocomplete="username" placeholder="Enter your username" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Password</label>
+          <input class="form-control" id="login-password" type="password" autocomplete="current-password" placeholder="Enter your password" required>
+        </div>
+        <div id="login-error" class="field-error" style="display:none; margin-bottom:10px;"></div>
+        <button class="btn btn-primary btn-block btn-lg" id="login-btn" type="submit">Sign In</button>
+      </form>
+      <p class="login-hint" id="login-portal-hint">Signing in as <b>Administrator</b></p>
+    </div>
+  </div>
+
+  <!-- App shell -->
+  <div id="app" style="display:none;">
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-logo">
+        <div class="logo-badge">🍚</div>
+        <div>
+          <div class="logo-name" id="side-store-name">Jesaka Rice Co.</div>
+          <div class="logo-sub">Store Management</div>
+        </div>
+      </div>
+      <nav class="nav" id="nav"></nav>
+      <div class="sidebar-user">
+        <div class="avatar" id="u-avatar">?</div>
+        <div style="flex:1; min-width:0;">
+          <div class="user-name" id="u-name">—</div>
+          <div class="user-role" id="u-role">—</div>
+        </div>
+        <button class="btn btn-ghost btn-sm" id="logout-btn" title="Sign out">⎋</button>
+      </div>
+    </aside>
+    <div class="main">
+      <header class="topbar">
+        <button class="hamburger" id="hamburger">☰</button>
+        <div class="topbar-title" id="topbar-title">Dashboard</div>
+        <span class="badge badge-gold" id="topbar-badge" style="display:none;"></span>
+      </header>
+      <main class="content" id="content"><div class="spinner"></div></main>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal-backdrop" id="modal-backdrop">
+    <div class="modal" id="modal">
+      <div class="modal-head">
+        <div class="modal-title" id="modal-title"></div>
+        <button class="modal-x" id="modal-x">×</button>
+      </div>
+      <div class="modal-body" id="modal-body"></div>
+      <div class="modal-foot" id="modal-foot"></div>
+    </div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/pages/dashboard-admin.js"></script>
+  <script src="js/pages/dashboard-worker.js"></script>
+  <script src="js/pages/pos.js"></script>
+  <script src="js/pages/sales.js"></script>
+  <script src="js/pages/returns.js"></script>
+  <script src="js/pages/products.js"></script>
+  <script src="js/pages/suppliers.js"></script>
+  <script src="js/pages/receive.js"></script>
+  <script src="js/pages/inventory.js"></script>
+  <script src="js/pages/expenses.js"></script>
+  <script src="js/pages/reports.js"></script>
+  <script src="js/pages/workers.js"></script>
+  <script src="js/pages/audit.js"></script>
+  <script src="js/pages/settings.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

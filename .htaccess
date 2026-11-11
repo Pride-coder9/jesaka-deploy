@@ -1,0 +1,19 @@
+# Jesaka Rice Company — Apache config
+# Works at the web root or in a subfolder of htdocs (e.g. /R/).
+
+RewriteEngine On
+
+# Pass the Authorization header through to PHP (needed for JWT auth).
+RewriteCond %{HTTP:Authorization} .
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+# Some setups also need CGIPassAuth (Apache 2.4.13+); harmless if unsupported.
+<IfModule mod_setenvif.c>
+  SetEnvIf Authorization "(.*)" HTTP_AUTHORIZATION=$1
+</IfModule>
+
+# Route every /api/* request to the PHP front controller.
+RewriteRule ^api/(index\.php|install\.php) - [L]
+RewriteRule ^api(/.*)?$ api/index.php [QSA,L]
+
+# Default document
+DirectoryIndex index.html
